@@ -9,7 +9,9 @@
     <h1>你好,{% if current_user.is_authenticated %}{{ current_user.username }}{% else %}请先登录{% endif %}</h1>
 </div>
 <div>
+    {% if current_user.is_authenticated %}
     {{ wtf.quick_form(form) }}
+    {% endif %}
 </div>
 <div class="post-tabs">
     <ul class="nav nav-tabs">

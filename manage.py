@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import os
-from flask import Flask
 from app import create_app, db
 from app.models import User, Follow, Post, Comment
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
+
 
 app = create_app(os.getenv('SHERRY_BLOG_CONFIG') or 'default')
 manager = Manager(app)
@@ -21,7 +21,7 @@ manager.add_command('db', MigrateCommand)
 def test():
     """Run the unit tests."""
     import unittest
-    tests = unittest.TestLoader().discover('tests')
+    tests = unittest.TestLoader().discover('test')
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 
