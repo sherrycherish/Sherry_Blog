@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import os
+from flask import Flask
+from flask.ext.redis import FlaskRedis
 from app import create_app, db
 from app.models import User, Follow, Post, Comment
 from flask.ext.script import Manager, Shell
