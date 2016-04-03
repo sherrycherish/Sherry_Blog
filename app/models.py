@@ -50,7 +50,7 @@ class User(db.Model):
         super(User, self).__init__(**kwargs)
         if self.email is not None and self.avatar_hash is None:
             self.avatar_hash = hashlib.md5(self.email.encode('utf-8')).hexdigest()
-        self.followed.append(Follow(follow=self))
+        self.followed.append(Follow(followed=self))
 
     @property
     def password(self):
@@ -152,12 +152,12 @@ def load_user(user_id):
 
 
 class Post(db.Model):
-    __tablename__ = 'post'
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    comments = db.relationship('Comment', backref='posts', lazy='dynamic')
 
     @staticmethod
     def generate_fake(count=100):
@@ -181,4 +181,5 @@ class Comment(db.Model):
     body_html = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
