@@ -6,7 +6,11 @@ from . import main
 from .forms import EditProfileForm, PostForm, CommentForm
 from .. import db
 from ..models import User, Post, Comment
-
+import sys
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+    sys.setdefaultencoding(default_encoding)
 
 @main.route('/', methods=['GET', 'POST'])
 def index():

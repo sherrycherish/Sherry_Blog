@@ -110,3 +110,11 @@ def password_reset_request():
         flash('请查看您的邮箱, 点击链接确认修改密码')
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html', form=form)
+
+
+import sys
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+
+    sys.setdefaultencoding(default_encoding)

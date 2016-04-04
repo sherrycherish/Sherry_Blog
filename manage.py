@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 import os
+from flask import Flask
 from app import create_app, db
 from app.models import User, Follow, Post, Comment
 from flask.ext.script import Manager, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
+
 
 
 app = create_app(os.getenv('SHERRY_BLOG_CONFIG') or 'default')
@@ -26,4 +28,5 @@ def test():
 
 
 if __name__ == '__main__':
+    app = Flask(__name__)
     manager.run()

@@ -25,3 +25,11 @@ class PostForm(Form):
 class CommentForm(Form):
     body = StringField('写下你的评论:')
     submit = SubmitField('发表')
+
+
+import sys
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+
+    sys.setdefaultencoding(default_encoding)

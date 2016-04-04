@@ -55,6 +55,12 @@ class PasswordResetForm(Form):
         if User.query.filter_by(email=field.data).first() is None:
             raise ValidationError('该邮箱未注册')
 
+import sys
+default_encoding = 'utf-8'
+if sys.getdefaultencoding() != default_encoding:
+    reload(sys)
+
+    sys.setdefaultencoding(default_encoding)
 
 
 
